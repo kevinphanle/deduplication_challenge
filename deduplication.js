@@ -34,8 +34,8 @@ function deduplicateLeads(leads) {
                 ? existingLeadById
                 : existingLeadByEmail;
 
-            // if we updated the lead's id, we need to update the id map
-            // and remove the old id from the email map
+            // if we are updating the lead via duplicated id, remove the email from the seenEmails map to refresh the map
+            // if we are updating the lead via duplicated email, remove the id from the seenIds map to refresh the map
             if (shouldUpdateId && sourceLead.email !== lead.email) {
                 seenEmails.delete(sourceLead.email);
                 seenEmails.set(lead.email, lead);
